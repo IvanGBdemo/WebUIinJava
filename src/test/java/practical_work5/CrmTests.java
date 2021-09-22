@@ -76,7 +76,7 @@ public class CrmTests {
     }
 
     @Test
-    void CreateCrmProjectExampleTest() throws InterruptedException {
+    void createCrmProjectExampleTest() throws InterruptedException {
         loginToCrm();
 
         Actions actions = new Actions(driver);
@@ -93,7 +93,7 @@ public class CrmTests {
         driver.findElement(By.name("crm_project[name]")).sendKeys("crm_project[name]");
 
         driver.findElement(By.xpath("//span[text()='Укажите организацию']")).click();
-        driver.findElement(By.xpath("//div[@id='select2-drop']//input")).sendKeys("test");
+        driver.findElement(By.xpath("//div[@id='select2-drop']//input")).sendKeys("1234");
 
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='select2-result-label']")));
         List<WebElement> organizationVars = driver.findElements(By.xpath("//div[@class='select2-result-label']"));
@@ -120,15 +120,11 @@ public class CrmTests {
         Select managerSelect = new Select(driver.findElement(By.name("crm_project[manager]")));
         managerSelect.selectByVisibleText("Амелин Владимир");
 
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//div[contains(@id, 's2id_crm_project_contactMain-uid')]/a")));
-        webDriverWait.until(ExpectedConditions.textToBePresentInElement(
-                driver.findElement(By.xpath("//div[contains(@id, 's2id_crm_project_company')]/a")), "123test"));
-
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='select2-container select2']")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By
+                .xpath("//div[contains(@id, 's2id_crm_project_contactMain-uid')]/a")));
         driver.findElement(By.xpath("//div[contains(@id, 's2id_crm_project_contactMain-uid')]/a")).click();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='select2-drop']//input")));
-        driver.findElement(By.xpath("//div[@id='select2-drop']//input")).sendKeys("1111");
+        driver.findElement(By.xpath("//div[@id='select2-drop']//input")).sendKeys("1 1");
         driver.findElement(By.xpath("//div[@id='select2-drop']//input")).sendKeys(Keys.ENTER);
 
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@id, 'crm_project_planning-uid')]")));
