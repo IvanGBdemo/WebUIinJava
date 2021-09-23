@@ -1,5 +1,6 @@
 package practical_work6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +16,7 @@ public class CreateExpensePage extends BaseView {
     @FindBy(name = "crm_expense_request[description]")
     public WebElement expenseRequestName;
 
+    @Step("Ввод названия заявки")
     public CreateExpensePage fillName(String name) {
         expenseRequestName.sendKeys(name);
         return this;
@@ -23,6 +25,7 @@ public class CreateExpensePage extends BaseView {
     @FindBy(name = "crm_expense_request[businessUnit]")
     public WebElement businessUnitSelect;
 
+    @Step("Выбор подразделения")
     public CreateExpensePage selectBusinessUnit(String businessUnit) {
         new Select(businessUnitSelect).selectByVisibleText(businessUnit);
         return this;
@@ -31,6 +34,7 @@ public class CreateExpensePage extends BaseView {
     @FindBy(name = "crm_expense_request[expenditure]")
     public WebElement selectExpenditure;
 
+    @Step("Выбор статьи расходов")
     public CreateExpensePage selectExpenditure(String expenditure) {
         new Select(selectExpenditure).selectByVisibleText(expenditure);
         return this;
@@ -39,6 +43,7 @@ public class CreateExpensePage extends BaseView {
     @FindBy(name = "crm_expense_request[currency]")
     public WebElement selectCurrency;
 
+    @Step("Выбор получателя")
     public CreateExpensePage selectCurrency(String currency) {
         new Select(selectCurrency).selectByVisibleText(currency);
         return this;
@@ -47,6 +52,7 @@ public class CreateExpensePage extends BaseView {
     @FindBy(name = "crm_expense_request[sumPlan]")
     public WebElement sumPlan;
 
+    @Step("Ввод планируемой суммы")
     public CreateExpensePage fillSumPlan(String sum) {
         sumPlan.sendKeys(sum);
         return this;
@@ -56,7 +62,6 @@ public class CreateExpensePage extends BaseView {
     public WebElement plannedDate;
 
     @FindBy(xpath = "//td[@data-handler='selectDay']/a")
-// Создаю метод, который вернёт дату в календаре
     public List<WebElement> daysInCalendar;
 
     public CreateExpensePage selectDatePlan(String dayOfMonth) {

@@ -1,5 +1,6 @@
 package practical_work6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,18 +16,20 @@ public class LoginPage extends BaseView {
 
     @FindBy(xpath = "//button")
     public WebElement loginButton;
-// Создаю методы, которые позволят работать на странице
+
+    @Step("Ввод логина")
     public LoginPage fillInputLogin(String login) {
         inputLogin.sendKeys(login);
         return this;
     }
 
+    @Step("Ввод пароля")
     public LoginPage fillInputPassword(String password) {
         inputPassword.sendKeys(password);
-// Метод будет возвращать LoginPage и себя (this)
         return this;
     }
-// Создаю метод, который нажимает кнопку "Зайти"
+
+    @Step("Клик на кнопку Войти")
     public MainPage clickLoginButton() {
         loginButton.click();
         return new MainPage(driver);
@@ -37,7 +40,7 @@ public class LoginPage extends BaseView {
         inputPassword.sendKeys(password);
         loginButton.click();
     }
-// Передаю в конструктор класса WebDriver
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
