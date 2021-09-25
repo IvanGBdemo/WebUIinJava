@@ -5,8 +5,10 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import practical_work8.LoginPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static practical_work8.CreateExpenseTestDataElements.baseCreateExpenseData;
 import static ru.yandex.qatools.htmlelements.matchers.WebElementMatchers.isDisplayed;
 @Story("Тест сайта crm.geekbrains.space")
 public class PageObjectTest extends BaseTest {
@@ -14,9 +16,11 @@ public class PageObjectTest extends BaseTest {
     @Test
     @Description ("Тест создания заявки на расходы")
     void checkTheCreationOfAnExpenseRequest() throws InterruptedException {
+
+
         driver.get("https://crm.geekbrains.space/");
 
-        new LoginPage(driver)
+        new LoginPage()
                 .fillInputLogin("Applanatest1")
                 .fillInputPassword("Student2020!")
                 .clickLoginButton()
@@ -31,7 +35,7 @@ public class PageObjectTest extends BaseTest {
                 .selectExpenditure("01101 - ОС: вычислительная техника инфраструктуры")
                 .selectCurrency("Доллар США")
                 .fillSumPlan("1000")
-                .selectDatePlan("20")
+                .selectDatePlan(baseCreateExpenseData.getDate())
                 .saveAndCloseButton.click();
 
         webDriverWait.until(
@@ -44,7 +48,7 @@ public class PageObjectTest extends BaseTest {
     @Description ("Тест создания проекта")
     void CreateCrmProjectExampleTest() throws InterruptedException {
         driver.get("https://crm.geekbrains.space/");
-        new LoginPage(driver)
+        new LoginPage()
                 .fillInputLogin("Applanatest1")
                 .fillInputPassword("Student2020!")
                 .clickLoginButton()
